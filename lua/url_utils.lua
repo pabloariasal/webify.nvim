@@ -1,13 +1,5 @@
 local M = {}
 
-function split_string(string)
-    lines = {}
-    for s in string:gmatch("[^\r\n]+") do
-        table.insert(lines, s)
-    end
-    return lines
-end
-
 function M.split_remote_url(remote_url)
     local remote_url = remote_url:gsub('http[s]+://', '')
     remote_url = remote_url:gsub('.*@', '')

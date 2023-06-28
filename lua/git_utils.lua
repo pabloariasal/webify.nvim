@@ -1,5 +1,13 @@
 local M = {}
 
+local function split_string(string)
+    lines = {}
+    for s in string:gmatch("[^\r\n]+") do
+        table.insert(lines, s)
+    end
+    return lines
+end
+
 function M.get_remotes()
     local output = vim.fn.system { 'git', 'remote' }
     local error = vim.v.shell_error
