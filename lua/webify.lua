@@ -5,8 +5,14 @@ local url_utils = require("url_utils")
 local M = {}
 
 function get_relative_file_path(repo_root)
-    local current = vim.api.nvim_buf_get_name(0)
-    return current:gsub(repo_root, ""):sub(2)
+    local current = vim.api.nvim_buf_get_name(0):gsub('%s+', '')
+    local s,e = string.find(current, repo_root, 1, true)
+    if s ~= 1 then
+        print('Repo root is not a prefix')
+        return nil
+    end
+    local removed = current:sub(e+2)
+    return removed
 end
 
 function get_current_line()
