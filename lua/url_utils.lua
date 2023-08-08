@@ -3,7 +3,7 @@ local M = {}
 function M.split_remote_url(remote_url)
     local remote_url = remote_url:gsub('http[s]+://', '')
     remote_url = remote_url:gsub('.*@', '')
-    local pattern = '([%w%p]+)[:/](%w+)/([%w%p]+)'
+    local pattern = '([%w%p]+)[:/]([%w%p]+)/([%w%p]+)'
     local base,user,repo = string.match(remote_url, pattern)
     if not base then
         print('pattern did not match')
