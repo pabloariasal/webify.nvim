@@ -50,7 +50,11 @@ end
 
 function open_in_browser(url)
     if url then
-        vim.fn.jobstart({ 'xdg-open', url }, { detach = true })
+        if require('jit').os == 'Linux' then
+            vim.fn.jobstart({ 'xdg-open', url }, { detach = true })
+        else
+            vim.fn.jobstart({ 'open', url }, { detach = true })
+        end
     else
         print('Could not open file')
     end
